@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from werkzeug.security import generate_password_hash, check_password_hash
 
 BASE_DIR=os.path.dirname(os.path.abspath(__file__))
-DB_PATH=os.path.join(BASE_DIR,"student_performance.db")
+DB_PATH=os.path.join("/tmp","student_performance.db")
 MODEL_PATH=os.path.join(BASE_DIR,"model.pkl")
 
 app=Flask(__name__)
@@ -222,8 +222,10 @@ def admin_export():
     return Response(out.getvalue(),mimetype="text/csv",headers={"Content-Disposition":"attachment; filename=student_performance_report.csv"})
 
 @app.route("/api/health")
-def health(): return jsonify(status="ok")
+def health():
+    return jsonify(status="ok")
+
+init_db()
 
 if __name__=="__main__":
-    init_db()
     app.run(debug=True)
