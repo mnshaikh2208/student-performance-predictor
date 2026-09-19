@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Project runtime files
+model.pkl
+student_predictor.db
+*.db
+
+# Environment / secrets
+.env
+
+# OS / editor
+.DS_Store
+.vscode/

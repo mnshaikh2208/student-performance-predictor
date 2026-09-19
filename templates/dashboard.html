@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Dashboard • StudentPredict{% endblock %}
+{% block content %}
+
+<section class="hero compact">
+  <div class="pill">GRAPHICAL INSIGHTS</div>
+  <h1>Prediction Dashboard</h1>
+  <p>A visual summary of every prediction stored in the database.</p>
+</section>
+
+<div id="emptyState" class="card empty hidden">
+  <div>📊</div>
+  <h2>No predictions yet</h2>
+  <p class="sub">Make a few predictions first, then come back here.</p>
+  <a href="/">Make your first prediction</a>
+</div>
+
+<div id="dashboardContent" class="hidden">
+  <div class="stat-grid" id="statCards"></div>
+
+  <div class="chart-grid">
+    <div class="card chart-card">
+      <h2>Pass vs Fail</h2>
+      <canvas id="passFailChart"></canvas>
+    </div>
+    <div class="card chart-card">
+      <h2>Feature Importance</h2>
+      <p class="sub">How much weight the model gives each input.</p>
+      <canvas id="importanceChart"></canvas>
+    </div>
+  </div>
+
+  <div class="card chart-card wide">
+    <h2>Predictions Over Time</h2>
+    <canvas id="trendChart"></canvas>
+  </div>
+
+  <div class="card chart-card wide">
+    <h2>Average Inputs Across All Students</h2>
+    <canvas id="avgChart"></canvas>
+  </div>
+</div>
+
+{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+{% endblock %}

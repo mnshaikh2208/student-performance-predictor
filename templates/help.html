@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Help • StudentPredict{% endblock %}
+{% block content %}
+
+<section class="hero compact">
+  <div class="pill">HELP & FAQ</div>
+  <h1>How to use StudentPredict</h1>
+  <p>A quick guide to the app, the fields it asks for, and answers to common questions.</p>
+</section>
+
+<div class="card help-card">
+  <h2>How it works</h2>
+  <p>You enter five details about your recent study habits and performance. A Decision Tree machine-learning
+  model — trained on a small educational dataset — predicts whether the result trend looks like a
+  <b>Pass</b> or <b>Fail</b>, along with a confidence score. Every prediction is saved to your local
+  <code>History</code> page.</p>
+
+  <h2>Field guide</h2>
+  <table class="help-table">
+    <tr><th>Field</th><th>What to enter</th><th>Valid range</th></tr>
+    <tr><td>Student name</td><td>Your name, used only as a label in your history</td><td>Any non-empty text</td></tr>
+    <tr><td>Study hours / day</td><td>Average hours you study per day</td><td>0–24</td></tr>
+    <tr><td>Attendance %</td><td>Your class attendance percentage</td><td>0–100</td></tr>
+    <tr><td>Previous marks %</td><td>Your last exam/test percentage</td><td>0–100</td></tr>
+    <tr><td>Assignments done</td><td>Number of assignments completed</td><td>0 or more</td></tr>
+    <tr><td>Sleep hours / day</td><td>Average hours of sleep per day</td><td>0–24</td></tr>
+  </table>
+
+  <h2>Frequently asked questions</h2>
+
+  <details>
+    <summary>Why does it say "Model not found" on the home page?</summary>
+    <p>The prediction model (<code>model.pkl</code>) hasn't been trained yet. Run <code>python train_model.py</code>
+    in your project folder, then restart <code>python app.py</code>.</p>
+  </details>
+
+  <details>
+    <summary>Is this a real, reliable prediction of my exam result?</summary>
+    <p>No. This is an educational demo trained on a very small, hand-made dataset. Treat the result as a
+    learning exercise in how ML classification works, not as academic advice.</p>
+  </details>
+
+  <details>
+    <summary>Where is my data stored?</summary>
+    <p>Locally, in a SQLite file called <code>student_predictor.db</code> inside your project folder. Nothing
+    is sent anywhere else.</p>
+  </details>
+
+  <details>
+    <summary>I got a validation error — why?</summary>
+    <p>Each field has a valid range (see the table above). For example, attendance must be between 0 and 100,
+    and your name can't be empty.</p>
+  </details>
+
+  <details>
+    <summary>How do I clear my history?</summary>
+    <p>Use the <a href="/admin/login">Admin panel</a> to delete individual predictions, or stop the app and
+    delete the <code>student_predictor.db</code> file to reset everything.</p>
+  </details>
+
+  <details>
+    <summary>The terminal shows a PATH warning during install — is that a problem?</summary>
+    <p>No. Warnings like "script flask.exe is installed in ... which is not on PATH" are harmless as long as
+    you run the app with <code>python app.py</code> rather than typing <code>flask</code> directly.</p>
+  </details>
+</div>
+
+{% endblock %}

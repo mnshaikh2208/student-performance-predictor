@@ -1,0 +1,1 @@
+Root endpoint fixed: index -> /. Admin portal: /admin/login. Admin button added to frontend navigation.
